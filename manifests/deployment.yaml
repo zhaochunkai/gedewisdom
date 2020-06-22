@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ttp-offical-website-f
+  namespace: kube-ops
+  labels:
+    app: ttp-offical-website-f
+    track: stable
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ttp-offical-website-f
+  template:
+    metadata:
+      labels:
+        app: ttp-offical-website-f
+        track: stable
+    spec:
+      imagePullSecrets:
+        - name: aliyun-registry
+      containers:
+      - name: ttp-offical-website-f
+        image: registry.cn-zhangjiakou.aliyuncs.com/gedewisdom/ttp-offical-website-f:__VERSION__
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          protocol: TCP
+          containerPort: 80

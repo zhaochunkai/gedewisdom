@@ -1,0 +1,19 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ttp-offical-website-f
+  namespace: kube-ops
+  labels:
+    app: ttp-offical-website-f
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  rules:
+  - host: ets-offical.gd
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ttp-offical-website-f
+          servicePort: 80
